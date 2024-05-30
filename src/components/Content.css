@@ -1,0 +1,124 @@
+.btn {
+    background-color: #14AC89;
+    width: 200px;
+  }
+  input{
+    border: solid 1px #14AC89;
+    width: 50%;
+    height: 8vh;
+    padding: 10px;
+  }
+  
+.display-cards {
+    display: flex;
+    flex-wrap: wrap;
+    border-radius: 3px;
+}
+  
+.todo-card {
+    flex: 1 0 20%; 
+    margin: 0 10px 20px;
+    margin: 40px;
+}
+  
+.card {
+    background-color: #CCF5D3;
+}
+  
+.deleteButton {
+    background-color: #CE601C;
+    margin: 10px;
+    width: 90px;
+    border-radius: 7px;
+    color: white;
+    border: none;
+    justify-content: end;
+    align-items: end;
+    justify-items: end;
+    height: 7vh;
+
+}
+  
+.editButton {
+    background-color: #14AC89;
+    margin: 10px;
+    width: 90px;
+    border-radius: 7px;
+    color: white;
+    border: none;
+    justify-content: end;
+    align-items: end;
+    justify-items: end;
+
+}
+.buttons {
+    display: flex;
+    justify-content: flex-end;
+    margin-top: 30px;
+  }
+  
+  
+.input-Todo {
+    margin: 15px;
+    width: 30%;
+    border-radius: 3px;
+
+}
+  
+.add-todo-card {
+    text-align: center;
+    
+}
+  
+.add-Todo {
+    background-color: #14AC89;
+    border-radius: 5px;
+    color: white;
+    border: none;
+    padding: 10px 10px;
+    width: 150px;
+
+}
+  
+.my-todos {
+    display: flex;
+    justify-content: space-between;
+    align-items: center; 
+    margin: 20px; 
+    font-weight: bold;
+    margin-left: 45px;
+}
+  
+.filter-container {
+    display: flex;
+    align-items: center;
+    margin-right: 25px;
+}
+  
+.filter-label {
+    margin-right: 10px;
+  }
+  
+.completed {
+    background-color: darkgreen;
+    color: white; 
+}
+  
+.pending {
+    background-color: #FF7F81;
+    color: white; 
+}
+
+.all{
+    background-color: #FF7F81;
+    color: white; 
+  }
+
+.edit-index{
+    margin-bottom: 20px;
+    height: 5vh;
+}
+.save{
+    width: 80px;
+    margin-left: 10px;
+}

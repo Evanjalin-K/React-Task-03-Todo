@@ -1,5 +1,4 @@
-# React Task 03
-## **React Todo Task**
+## **React Todo Task - Todo**
 1. Created a React Todo by using React Js, Bootstrap, CSS, html, Vite and NPM.
    1. Created two components: the App.jsx and Header.jsx. Each component has a separate CSS file.
    2. We can add the data by clicking the Add Todo button.

@@ -8,7 +8,7 @@ const Content = () => {
   const [filterStatus, setFilterStatus] = useState('all');
   const [editIndex, setEditIndex] = useState(null);
 
-  const handleAddTodo = () => {
+  const handleAddOrUpdateTodo = () => {
     if (newTodoName.trim() === '' || newTodoDescription.trim() === '') {
       alert('Please enter both todo name and description.');
       return;
@@ -20,14 +20,22 @@ const Content = () => {
       completed: false,
     };
 
-    setTodos([...todos, newTodo]);
+    if (editIndex !== null) {
+      const updatedTodos = [...todos];
+      updatedTodos[editIndex].name = newTodoName;
+      updatedTodos[editIndex].description = newTodoDescription;
+      setTodos(updatedTodos);
+      setEditIndex(null);
+    } else {
+      setTodos([...todos, newTodo]);
+    }
+
     setNewTodoName('');
     setNewTodoDescription('');
   };
 
   const handleDeleteTodo = (index) => {
-    const updatedTodos = [...todos];
-    updatedTodos.splice(index, 1);
+    const updatedTodos = todos.filter((_, i) => i !== index);
     setTodos(updatedTodos);
   };
 
@@ -43,16 +51,6 @@ const Content = () => {
     setNewTodoDescription(todos[index].description);
   };
 
-  const handleSaveEdit = () => {
-    const updatedTodos = [...todos];
-    updatedTodos[editIndex].name = newTodoName;
-    updatedTodos[editIndex].description = newTodoDescription;
-    setTodos(updatedTodos);
-    setEditIndex(null);
-    setNewTodoName('');
-    setNewTodoDescription('');
-  };
-
   const handleFilterChange = (e) => {
     setFilterStatus(e.target.value);
   };
@@ -61,22 +59,43 @@ const Content = () => {
     <div className="content-container">
       <div className="filter">
         <div className="add-todo-card">
-          <input
-            type="text"
-            className='input-Todo'
-            placeholder=" Todo Name"
-            value={newTodoName}
-            onChange={(e) => setNewTodoName(e.target.value)}
-          />
-          <input
-            className='input-Todo'
-            type="text"
-            placeholder=" Todo Description"
-            value={newTodoDescription}
-            onChange={(e) => setNewTodoDescription(e.target.value)}
-          />
-          <button className='add-Todo' type="button" onClick={handleAddTodo}>
-            Add Todo
+          {editIndex !== null ? (
+            <>
+              <input
+                type="text"
+                className='input-Todo'
+                placeholder=" Todo Name"
+                value={newTodoName}
+                onChange={(e) => setNewTodoName(e.target.value)}
+              />
+              <input
+                className='input-Todo'
+                type="text"
+                placeholder=" Todo Description"
+                value={newTodoDescription}
+                onChange={(e) => setNewTodoDescription(e.target.value)}
+              />
+            </>
+          ) : (
+            <>
+              <input
+                type="text"
+                className='input-Todo'
+                placeholder=" Todo Name"
+                value={newTodoName}
+                onChange={(e) => setNewTodoName(e.target.value)}
+              />
+              <input
+                className='input-Todo'
+                type="text"
+                placeholder=" Todo Description"
+                value={newTodoDescription}
+                onChange={(e) => setNewTodoDescription(e.target.value)}
+              />
+            </>
+          )}
+          <button className='add-Todo' type="button" onClick={handleAddOrUpdateTodo}>
+            {editIndex !== null ? 'Update Todo' : 'Add Todo'}
           </button>
           <div className='my-todos'>
             <div className='my-todo'>My Todos</div>
@@ -107,39 +126,19 @@ const Content = () => {
                 <div className="todo-card" key={index}>
                   <div className="card">
                     <div className="card-body">
-                      {editIndex === index ? (
-                        <>
-                        <p>Name:</p>
-                          <input className='edit-index'
-                            type="text"
-                            value={newTodoName}
-                            onChange={(e) => setNewTodoName(e.target.value)}
-                          />
-                          <p>Description:</p>
-                          <input className='edit-index'
-                            type="text"
-                            value={newTodoDescription}
-                            onChange={(e) => setNewTodoDescription(e.target.value)}
-                          />
-                          <button className='save' onClick={handleSaveEdit}>Save</button>
-                        </>
-                      ) : (
-                        <>
-                          <p className="card-title">Name: {todo.name}</p>
-                          <p className="card-text">Description: {todo.description}</p>
-                          <div className="filter">
-                            <span>Status: </span>
-                            <select value={todo.completed ? 'completed' : 'pending'} onChange={() => handleToggleStatus(index)} className={todo.completed ? 'completed' : 'pending'}>
-                              <option value="completed">Completed</option>
-                              <option value="pending">Pending</option>
-                            </select>
-                          </div>
-                          <div className='buttons'>
-                            <button className='editButton' onClick={() => handleEditTodo(index)}>Edit</button>
-                            <button className='deleteButton' onClick={() => handleDeleteTodo(index)}>Delete</button>
-                          </div>
-                        </>
-                      )}
+                      <p className="card-title">Name: {todo.name}</p>
+                      <p className="card-text">Description: {todo.description}</p>
+                      <div className="filter">
+                        <span>Status: </span>
+                        <select value={todo.completed ? 'completed' : 'pending'} onChange={() => handleToggleStatus(index)} className={todo.completed ? 'completed' : 'pending'}>
+                          <option value="completed">Completed</option>
+                          <option value="pending">Pending</option>
+                        </select>
+                      </div>
+                      <div className='buttons'>
+                        <button className='editButton' onClick={() => handleEditTodo(index)}>Edit</button>
+                        <button className='deleteButton' onClick={() => handleDeleteTodo(index)}>Delete</button>
+                      </div>
                     </div>
                   </div>
                 </div>

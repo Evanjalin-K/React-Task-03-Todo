@@ -61,37 +61,13 @@ const Content = () => {
         <div className="add-todo-card">
           {editIndex !== null ? (
             <>
-              <input
-                type="text"
-                className='input-Todo'
-                placeholder=" Todo Name"
-                value={newTodoName}
-                onChange={(e) => setNewTodoName(e.target.value)}
-              />
-              <input
-                className='input-Todo'
-                type="text"
-                placeholder=" Todo Description"
-                value={newTodoDescription}
-                onChange={(e) => setNewTodoDescription(e.target.value)}
-              />
+              <input type="text"className='input-Todo' placeholder=" Todo Name"value={newTodoName} onChange={(e) => setNewTodoName(e.target.value)}/>
+              <input className='input-Todo' type="text" placeholder=" Todo Description"value={newTodoDescription}onChange={(e) => setNewTodoDescription(e.target.value)}/>
             </>
           ) : (
             <>
-              <input
-                type="text"
-                className='input-Todo'
-                placeholder=" Todo Name"
-                value={newTodoName}
-                onChange={(e) => setNewTodoName(e.target.value)}
-              />
-              <input
-                className='input-Todo'
-                type="text"
-                placeholder=" Todo Description"
-                value={newTodoDescription}
-                onChange={(e) => setNewTodoDescription(e.target.value)}
-              />
+              <input type="text" className='input-Todo'placeholder=" Todo Name"value={newTodoName}onChange={(e) => setNewTodoName(e.target.value)}/>
+              <input className='input-Todo' type="text"placeholder=" Todo Description"value={newTodoDescription}onChange={(e) => setNewTodoDescription(e.target.value)}/>
             </>
           )}
           <button className='add-Todo' type="button" onClick={handleAddOrUpdateTodo}>
@@ -101,11 +77,7 @@ const Content = () => {
             <div className='my-todo'>My Todos</div>
             <div className='filter-container'>
               <span className='filter-label'>Filter:</span>
-              <select
-                value={filterStatus}
-                onChange={handleFilterChange}
-                className={filterStatus === 'completed' ? 'completed' : filterStatus === 'pending' ? 'pending' : filterStatus === 'all' ? 'all' : ''}
-              >
+              <select value={filterStatus} onChange={handleFilterChange} className={filterStatus === 'completed' ? 'completed' : filterStatus === 'pending' ? 'pending' : filterStatus === 'all' ? 'all' : ''}>
                 <option value="all">All</option>
                 <option value="completed">Completed</option>
                 <option value="pending">Pending</option>
